@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 from src.app import activities
 
 
