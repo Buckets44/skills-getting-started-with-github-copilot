@@ -74,8 +74,7 @@ def test_signup_rejects_unknown_activity(client):
     email = "student@mergington.edu"
 
     # Act
-    response = client.post(f"/activities/{unknown_activity}/signup", params={"email": email})
-
+    response = client.post(f"/activities/{quote(unknown_activity, safe='')}/signup", params={"email": email})
     # Assert
     assert response.status_code == 404
     assert response.json()["detail"] == "Activity not found"
