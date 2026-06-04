@@ -99,8 +99,7 @@ def test_unregister_rejects_unknown_activity(client):
     email = "student@mergington.edu"
 
     # Act
-    response = client.delete(f"/activities/{unknown_activity}/participants", params={"email": email})
-
+    response = client.delete(f"/activities/{quote(unknown_activity, safe='')}/participants", params={"email": email})
     # Assert
     assert response.status_code == 404
     assert response.json()["detail"] == "Activity not found"
