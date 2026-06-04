@@ -86,8 +86,7 @@ def test_unregister_removes_existing_participant(client):
     email = "rachel@mergington.edu"
 
     # Act
-    response = client.delete(f"/activities/{activity_name}/participants", params={"email": email})
-
+    response = client.delete(f"/activities/{quote(activity_name, safe='')}/participants", params={"email": email})
     # Assert
     assert response.status_code == 200
     assert response.json()["message"] == f"Unregistered {email} from {activity_name}"
