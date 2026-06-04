@@ -111,8 +111,7 @@ def test_unregister_rejects_non_participant(client):
     not_enrolled_email = "not.enrolled@mergington.edu"
 
     # Act
-    response = client.delete(f"/activities/{activity_name}/participants", params={"email": not_enrolled_email})
-
+    response = client.delete(f"/activities/{quote(activity_name, safe='')}/participants", params={"email": not_enrolled_email})
     # Assert
     assert response.status_code == 404
     assert response.json()["detail"] == "Student not signed up for this activity"
