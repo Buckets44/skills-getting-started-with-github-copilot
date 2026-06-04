@@ -49,8 +49,7 @@ def test_signup_adds_new_participant(client):
     new_email = "new.student@mergington.edu"
 
     # Act
-    response = client.post(f"/activities/{activity_name}/signup", params={"email": new_email})
-
+    response = client.post(f"/activities/{quote(activity_name, safe='')}/signup", params={"email": new_email})
     # Assert
     assert response.status_code == 200
     assert response.json()["message"] == f"Signed up {new_email} for {activity_name}"
