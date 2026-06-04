@@ -62,8 +62,7 @@ def test_signup_rejects_duplicate_participant(client):
     existing_email = "michael@mergington.edu"
 
     # Act
-    response = client.post(f"/activities/{activity_name}/signup", params={"email": existing_email})
-
+    response = client.post(f"/activities/{quote(activity_name, safe='')}/signup", params={"email": existing_email})
     # Assert
     assert response.status_code == 400
     assert response.json()["detail"] == "Student already signed up for this activity"
